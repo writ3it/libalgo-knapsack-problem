@@ -4,6 +4,7 @@ namespace Writ3it\LibAlgo\KnapsackProblem\Tests;
 
 use Writ3it\LibAlgo\KnapsackProblem\Impl\Item;
 use PHPUnit\Framework\TestCase;
+use Writ3it\LibAlgo\KnapsackProblem\Impl\Bag;
 
 class ExampleTest extends TestCase
 {
@@ -20,6 +21,8 @@ class ExampleTest extends TestCase
             new Item(5, 25),
             new Item(6, 180)
         ];
+
+        $bag = new Bag(200);
 
         //todo
     }
