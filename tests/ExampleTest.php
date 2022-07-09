@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Writ3it\LibAlgo\KnapsackProblem\Tests;
 
-use Writ3it\LibAlgo\KnapsackProblem\Impl\Item;
 use PHPUnit\Framework\TestCase;
+use Writ3it\LibAlgo\KnapsackProblem\Impl\Item;
 use Writ3it\LibAlgo\KnapsackProblem\Impl\Bag;
 use Writ3it\LibAlgo\KnapsackProblem\Algorithm\DynamicKnapsackSolver;
 

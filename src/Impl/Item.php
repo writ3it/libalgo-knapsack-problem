@@ -24,6 +24,7 @@ class Item implements ItemInterface
      * @var int
      */
     private $value;
+    
     public function __construct(int $weight, int $value)
     {
         $this->weight = $weight;

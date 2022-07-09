@@ -24,6 +24,7 @@ class Bag implements BagInterface
      * @var ItemInterface[]
      */
     private $items = [];
+
     public function __construct(int $capacity)
     {
         $this->capacity = $capacity;
@@ -36,12 +37,9 @@ class Bag implements BagInterface
     {
         return $this->capacity;
     }
+    
     /**
-     * Add item to the solution (bag).
-     *
-     * @param ItemInterface $item
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function addItem(ItemInterface $item): void
     {
