@@ -2,30 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Writ3it\LibAlgo\KnapsackProblem;
+namespace Writ3it\LibAlgo\KnapsackProblem\Algorithm;
 
+use Writ3it\LibAlgo\KnapsackProblem\KnapsackSolverInterface;
 use Writ3it\LibAlgo\KnapsackProblem\BagInterface;
 use Writ3it\LibAlgo\KnapsackProblem\ItemInterface;
 
-class DynamicKnapsack
+class DynamicKnapsackSolver implements KnapsackSolverInterface
 {
-
+    
     /**
-     * Solve Knapsack Problem using dynamic programming.
-     *
-     * @param ItemInterface[] $items
-     * @param BagInterface $bag
-     * @return ItemInterface[]
+     * {@inheritDoc}
      */
-    public function solve(array $items, BagInterface $bag): array
+    public function solve(array &$items, BagInterface $bag): int
     {
         $n = count($items);
         $capacity = $bag->getCapacity();
-
-        $table = $this->createDecisionTable($n, $capacity);
-
-        $this->computeDecisionTable($table, $items, $n, $capacity);
-        return $this->readSolution($table, $items, $n, $capacity);
+        
+        $decisionTable = $this->createDecisionTable($n, $capacity);
+        $this->computeDecisionTable($decisionTable, $items, $n, $capacity);
+        return $this->readSolution($decisionTable, $items, $bag, $n, $capacity);
     }
 
     /**
@@ -41,14 +37,14 @@ class DynamicKnapsack
     }
 
     /**
-     * Compute values in decision table.
-     *
-     * @param int[][] $decisionTable
-     * @param ItemInterface[] $items
-     * @param int $n
-     * @param int $capacity
-     * @return void
-     */
+    * Compute values in decision table.
+    *
+    * @param int[][] $decisionTable
+    * @param ItemInterface[] $items
+    * @param int $n
+    * @param int $capacity
+    * @return void
+    */
     private function computeDecisionTable(array &$decisionTable, array &$items, int $n, int $capacity):void
     {
         for ($i = 1; $i<=$n; $i++) {
@@ -64,29 +60,28 @@ class DynamicKnapsack
     }
 
     /**
-     * Read solution from decision table.
-     *
-     * @param int[][] $decisionTable
-     * @param ItemInterface[] $items
-     * @param integer $n
-     * @param integer $capacity
-     * @return ItemInterface[]
-     */
-    public function readSolution(array &$decisionTable, array &$items, int $n, int $capacity):array
+    * Read solution from decision table.
+    *
+    * @param int[][] $decisionTable Const
+    * @param ItemInterface[] $items
+    * @param int $n
+    * @param int $capacity
+    * @return int
+    */
+    private function readSolution(array &$decisionTable, array &$items, BagInterface $bag, int $n, int $capacity):int
     {
         $max = $decisionTable[$n][$capacity];
         $i = $n;
         $j = $capacity;
 
-        $solution = [];
-
         while ($decisionTable[$i][$j] > 0) {
             if ($decisionTable[$i][$j] > $decisionTable[$i-1][$j]) {
-                $solution[] = $items[$i -1];
-                $j -= $items[$i-1]->getWeight();
+                $item = $items[$i -1];
+                $bag->addItem($item);
+                $j -= $item->getWeight();
             }
             $i -= 1;
         }
-        return $solution;
+        return $decisionTable[$n][$capacity];
     }
 }

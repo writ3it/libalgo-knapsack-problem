@@ -7,11 +7,12 @@ namespace Writ3it\LibAlgo\KnapsackProblem\Tests;
 use Writ3it\LibAlgo\KnapsackProblem\Impl\Item;
 use PHPUnit\Framework\TestCase;
 use Writ3it\LibAlgo\KnapsackProblem\Impl\Bag;
-use Writ3it\LibAlgo\KnapsackProblem\DynamicKnapsack;
+use Writ3it\LibAlgo\KnapsackProblem\Algorithm\DynamicKnapsackSolver;
+
 
 class ExampleTest extends TestCase
 {
-    public function test_simple_example()
+    public function test_solve_example1()
     {
         // Given
         $items = [
@@ -23,8 +24,10 @@ class ExampleTest extends TestCase
 
         $bag = new Bag(8);
 
-        $algo = new DynamicKnapsack();
-        $solution = $algo->solve($items, $bag);
+        $algo = new DynamicKnapsackSolver();
+        $value = $algo->solve($items, $bag);
+
+        self::assertEquals(15, $value);
 
         self::assertEquals(
             [
@@ -32,11 +35,11 @@ class ExampleTest extends TestCase
                 $items[1],
                 $items[0]
             ],
-            $solution
+            $bag->getItems()
         );
     }
 
-    public function test_simple_example2()
+    public function test_solve_example2()
     {
         // Given
         $items = [
@@ -49,8 +52,10 @@ class ExampleTest extends TestCase
 
         $bag = new Bag(8);
 
-        $algo = new DynamicKnapsack();
-        $solution = $algo->solve($items, $bag);
+        $algo = new DynamicKnapsackSolver();
+        $value = $algo->solve($items, $bag);
+
+        self::assertEquals(18, $value);
 
         self::assertEquals(
             [
@@ -58,7 +63,7 @@ class ExampleTest extends TestCase
                 $items[3],
                 $items[1]
             ],
-            $solution
+            $bag->getItems()
         );
 
       

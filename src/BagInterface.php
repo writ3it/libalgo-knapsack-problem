@@ -18,4 +18,12 @@ interface BagInterface
      * @return int
      */
     public function getCapacity():int;
+
+    /**
+     * Add item to the solution (bag).
+     *
+     * @param ItemInterface $item
+     * @return void
+     */
+    public function addItem(ItemInterface $item):void;
 }
