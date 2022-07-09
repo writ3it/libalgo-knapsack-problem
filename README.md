@@ -5,9 +5,9 @@ Solution for Knapsack problem in PHP applications.
 
 ## Available algorithms
 
-| Classname | Algorithm name | Computational complexity |
-|:---------:|:--------------:|:------------------------:|
-| DynamicKnapsackSolver | Solves Knapsack problem using dynamic programming. | `O(n*W)` where *n* means number of Items and *W* means Bag capacity. |
+| Classname | Algorithm name | Computational complexity | Space complexity |
+|:---------:|:--------------:|:------------------------:|:-----------------:|
+| DynamicKnapsackSolver | Solves Knapsack problem using dynamic programming. | `O(n*W)` where *n* means number of Items and *W* means Bag capacity. |  `O(n*W)` where *n* means number of Items and *W* means Bag capacity. |
 
 ## Example of use
 
