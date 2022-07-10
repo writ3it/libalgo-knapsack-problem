@@ -14,8 +14,9 @@ class DynamicKnapsackSolver implements KnapsackSolverInterface
     /**
      * {@inheritDoc}
      */
-    public function solve(array &$items, BagInterface $bag): int
+    public function solve(array $items, BagInterface $bag): int
     {
+        $items = array_values($items); 
         $n = count($items);
         $capacity = $bag->getCapacity();
         

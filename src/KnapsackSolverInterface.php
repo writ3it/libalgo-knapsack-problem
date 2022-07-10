@@ -16,5 +16,5 @@ interface KnapsackSolverInterface
      * @param BagInterface $bag The bag in which the items will be put.
      * @return int The total value of items in the backpack.
      */
-    public function solve(array &$items, BagInterface $bag):int;
+    public function solve(array $items, BagInterface $bag):int;
 }
